@@ -8,16 +8,23 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 @Configuration
 public class DemoSecurityConfig {
+/*
     @Bean
     public InMemoryUserDetailsManager userDetailsManager() {
         // this is inmemory authentication
+        // we are using hardcoded data
+ */
         /*The InMemoryUserDetailsManager is a class provided by the Spring Security framework in Java.
-        It's primarily used for managing user details, such as usernames, passwords, and authorities, in memory within your Spring application.
-        This is useful for small applications or for quick setup during development and testing phases.*/
+        * It's primarily used for managing user details, such as usernames, passwords, and authorities, in memory within your Spring application.
+        * This is useful for small applications or for quick setup during development and testing phases.*\/
         UserDetails john = User.builder()
                 .username("john")
                 .password("{noop}test123")
@@ -38,7 +45,7 @@ public class DemoSecurityConfig {
 
         return new InMemoryUserDetailsManager(john, mary, susan);
     }
-
+*/
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         /*
@@ -58,5 +65,12 @@ public class DemoSecurityConfig {
         //disable CSRF
         http.csrf(csrf -> csrf.disable());
         return http.build();
+    }
+
+    // add support for JDBC .. no more hardcoded users
+
+    @Bean
+    public UserDetailsManager userDetailsManager(DataSource dataSource) {
+        return new JdbcUserDetailsManager(dataSource);
     }
 }

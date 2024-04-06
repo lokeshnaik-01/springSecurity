@@ -22,3 +22,12 @@
 - Can be used for any normal browser web requests
 - CSRF can be disabled for non-browser clients
 - CSRF not required for stateless APIs that use POST, PUT, DELETE, PATCH
+# JDBC authentication
+- Default Spring Security Database Schema consist of two tables `users` and `authorities`
+  - users table has below fields
+    - username, password, enabled
+  - authorities table has below fields
+    - username, authority
+- Internally Spring Security uses "ROLE_" prefix for the authority in authorities table
+- Spring will automatically read data from the database if we follow spring conventions and create tables in that way
+- 

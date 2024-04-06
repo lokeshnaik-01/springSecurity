@@ -13,3 +13,12 @@
 ## Programing Security
 - Spring Security provides an API for custom app conding
 - Provides greater customization for specific app req
+
+# Cross-Site Request Forgery (CSRF)
+- Spring Security can protect against CSRF attacks
+- Embed additional authentication data/token into all HTML forms
+- On subsequent requests, web app will verify token before processing
+- primary use case is traditional web apps
+- Can be used for any normal browser web requests
+- CSRF can be disabled for non-browser clients
+- CSRF not required for stateless APIs that use POST, PUT, DELETE, PATCH

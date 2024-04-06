@@ -30,4 +30,7 @@
     - username, authority
 - Internally Spring Security uses "ROLE_" prefix for the authority in authorities table
 - Spring will automatically read data from the database if we follow spring conventions and create tables in that way
-- 
+## JDBC Authentication Custom Tables
+- Update Security Configuration where we use sql queries to 
+  - how to find user by given username
+  - how to find roles by given role name
